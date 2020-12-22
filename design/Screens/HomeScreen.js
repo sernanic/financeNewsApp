@@ -32,7 +32,7 @@ function HomeScreen() {
       <TitleBar>
           <Avatar source={require('../assets/icon.png')}/>
           
-            <Title>this life mamam serna</Title>
+            <Title>this tis hello serna</Title>
             <Name> world</Name>
           
       </TitleBar>
