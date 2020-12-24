@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useEffect,useState} from 'react';
-import { StyleSheet,ScrollView,SafeAreaView, Text, View } from 'react-native';
+import { StyleSheet,ScrollView,SafeAreaView, TextInput, View } from 'react-native';
 import styled from 'styled-components';
 import Card from '../components/Card'
 import {connect} from 'react-redux';
 import {useSelector,useDispatch} from 'react-redux'
 import TrendingCard from '../components/TrendingCard';
+import Search from '../components/SearchBar'
 function mapStateToProps(state){
     return{action:state.action}
 }
-function HomeScreen() {
+const HomeScreen = ({navigation})=> {
    
     let [newsList,setNewsList]=useState([]);
     const test = useSelector((state)=>state.action)
@@ -30,10 +31,8 @@ function HomeScreen() {
     <View style={styles.container}>
       <SafeAreaView>
       <TitleBar>
-          <Avatar source={require('../assets/icon.png')}/>
           
-            <Title>this tis hello serna</Title>
-            <Name> world</Name>
+            <Search navigation={navigation}/>
           
       </TitleBar>
       <SubTitle>Most Trending</SubTitle>
@@ -43,9 +42,8 @@ function HomeScreen() {
           source_name={item.source_name} title={item.title.slice(0,50)}
           imageUrl = {item.image_url}/>
         ))}
-      
       </ScrollView>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} styles={{backgroundColor:'#FBF9F6'}}>
         {newsList.slice(11,).map((item,index)=>(
             <TrendingCard key={index} date={item.date} 
             title={item.title.slice(0,40)} imageUrl = {item.image_url}/>
@@ -89,7 +87,6 @@ margin-left:60px
 const TitleBar = styled.View`
 width:100%;
 margin-top:50px;
-padding-left:20px;
 `
 
 const Avatar = styled.Image`
